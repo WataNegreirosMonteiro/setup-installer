@@ -71,7 +71,7 @@ def tela_inicio():
   
   tela.mainloop()
 def tela_mapear():
-  tela = criador_telas('SEJUS - Setup')
+  tela = criador_telas('SEJUS - Mapear')
   img_fundo =  PhotoImage(file='_assets/telas/tl_mapear.png')
   
   rotulo = Label(tela, image=img_fundo)
@@ -111,6 +111,61 @@ def tela_finalizado():
   bt_inicio.place(width=93, height=35, x=87, y=415)
   
   tela.mainloop()
+def tela_instalar():
+  tela = criador_telas('SEJUS - Instalador')
+  img_fundo =  PhotoImage(file='_assets/telas/tl_instalacoes.png')
+  
+  rotulo = Label(tela, image=img_fundo)
+  rotulo.pack()
+  
+  cb_Winrar= ttk.Combobox(
+    state='readonly',
+    values=['-', 'Winrar']
+  )
+  cb_Winrar.place(width=115, height=20, x=196, y=201)
+  
+  cb_WPS= ttk.Combobox(
+    state='readonly',
+    values=['-', 'WPS']
+  )
+  cb_WPS.place(width=115, height=20, x=196, y=229)
+  
+  cb_Chrome= ttk.Combobox(
+    state='readonly',
+    values=['-', 'Chrome']
+  )
+  cb_Chrome.place(width=115, height=20, x=196, y=257)
+  
+  cb_Firefox= ttk.Combobox(
+    state='readonly',
+    values=['-', 'Firefox']
+  )
+  cb_Firefox.place(width=115, height=20, x=342, y=201)
+  
+  cb_Adobe= ttk.Combobox(
+    state='readonly',
+    values=['-', 'Adobe']
+  )
+  cb_Adobe.place(width=115, height=20, x=342, y=229)
+  
+  cb_Kaspersky= ttk.Combobox(
+    state='readonly',
+    values=['-', 'Kaspersky']
+  )
+  cb_Kaspersky.place(width=115, height=20, x=342, y=257)
+  
+  img_bt_instalar = PhotoImage(file='_assets/botoes/bt_instalar.png')
+  bt_instalar = Button(tela, highlightthickness=0, bd=0, background='#1271D8', image=img_bt_instalar, command=lambda: [ 
+    instalador(cb_Winrar.get(),
+               cb_WPS.get(),
+               cb_Chrome.get(),
+               cb_Firefox.get(),
+               cb_Adobe.get(),
+               cb_Kaspersky.get()
+    )])
+  bt_instalar.place(width=256, height=36, x=192, y=311)
+  
+  tela.mainloop()
 '''
 /*******************************************************************************
  * AÇÕES
@@ -133,7 +188,9 @@ def dns():
 def horario():
   os.system('w32tm /resync')
   time.sleep(2)
+def instalador(winrar, wps, chrome, firefox, adobe, kaspersky):
+  print(winrar+ wps+ chrome+ firefox+ adobe+ kaspersky)
 '''
 --------------------------------------------------------------------------------
 '''
-tela_entrar()
+tela_instalar()
